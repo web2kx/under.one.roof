@@ -1,0 +1,2 @@
+[22-May-2012 19:11:17] PHP Fatal error:  Call to undefined function  get_header() in /home/hostbo/public_html/demos/pady/UnderOneRoof/wp-content/themes/underoneroof/archive.php on line 1
+[22-May-2012 19:11:39] PHP Fatal error:  Call to undefined function  get_header() in /home/hostbo/public_html/demos/pady/UnderOneRoof/wp-content/themes/underoneroof/archive.php on line 1
