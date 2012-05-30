@@ -1,21 +1,27 @@
 <?php get_header(); ?>
 
-				<div id="slider">
-				<div class="slider-wrapper theme-default">
-					<div class="ribbon"></div>
-					<div id="nivoslider" class="nivoSlider">
-							<?php query_posts('category_name=slider&posts_per_page=3' ); 
-							while ( have_posts() ) : the_post(); ?>
-							<a href="<?php echo get_permalink(); ?>"><?php the_post_thumbnail( 'homepage-slider' ); the_excerpt(); ?></a>
-							<div class="slider-title">
-								<h2>
-									<?php the_title(); ?>
-								</h2>
+			<div class="slider-homepage">
+			<?php query_posts('category_name=slider&posts_per_page=1' ); 
+					while ( have_posts() ) : the_post(); ?>							
+							<?php the_post_thumbnail( 'homepage-slider' );?>
+							<div class="slider-homepage-box">
+								<div class="slider-homepage-title">
+									<h2><?php the_title(); ?></h2>
+								</div>
+								<div class="button_space button-a">
+									<a href="#">SPACES & RATES</a>
+								</div>
+								<div class="button_how button-a">
+									<a href="#">HOW TO JOIN</a>
+								</div>
+								<div class="button_host button-a">
+									<a href="#">HOST A PUBLIC EVENT</a>
+								</div>
 							</div>
-							<?php endwhile; wp_reset_query(); ?>
-					</div>
-				</div>
-			</div><!-- end of nivoslider -->
+							<?php the_excerpt(); ?>
+			<?php endwhile; wp_reset_query(); ?>
+			</div><!-- end of slider-homepage-->
+				
 			<?php if ( is_sidebar_active('slider') ) : ?>
 					<div id="primary" class="widget-slider">
 						<ul class="xoxo">

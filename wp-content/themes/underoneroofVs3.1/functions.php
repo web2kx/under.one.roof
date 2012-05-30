@@ -22,6 +22,7 @@
 	
 	add_shortcode("googlemap", "fn_googleMaps");
 	
+
 	register_sidebar(array(
 	 'name' => 'Sidebar',
 	 'before_widget' => '<div class="widget">',
