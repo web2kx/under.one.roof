@@ -1,0 +1,16 @@
+/*
+!/wp-content
+/wp-content/*
+
+!/wp-content/themes
+/wp-content/themes/*
+
+!/wp-content/themes/underoneroofVs3.1
+!/wp-content/themes/underoneroofVs3.1/*
+
+!/wp-content/uploads
+!/wp-content/uploads/*
+
+!/.gitignore
+!/hostbo_demos.sql
+!/.htaccess
