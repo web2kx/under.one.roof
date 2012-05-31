@@ -30,7 +30,7 @@
 							<!-- LOGO -->
 							<div id="logo" class="logo">
 								<a href="<?php echo get_settings('home');?>">	
-									<img src="<?php bloginfo('template_url'); ?>/images/logo.jpg" alt="UnderOneRoof" />
+									<img src="<?php bloginfo('template_url'); ?>/images/logo-with-words.jpg" alt="UnderOneRoof" />
 								</a>
 							</div>
 							<!-- NAV SUP -->
@@ -55,14 +55,14 @@
 								
 							</div>-->
 							<!-- TITLE PAGE -->
-							<div class="titlepage">
+							<!--<div class="titlepage">
 								<h1>
 									<a href="<?php echo get_settings('home');?>">
 										<?php bloginfo('name'); ?>
 									</a>
 									<span class="description">Building<br> Progress.</span>
 								</h1>
-							</div>
+							</div>-->
 							<!-- MAIN NAV -->
 							<div class="nav">
 								<?php wp_nav_menu( 

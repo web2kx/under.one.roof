@@ -170,71 +170,6 @@ class MCAPI {
      *
      * @param string $list_id the list to test segmentation on - get lists using lists()
      * @param array $options with 2 keys:  
-             string "match" controls whether to use AND or OR when applying your options - expects "<strong>any</strong>" (for OR) or "<strong>all</strong>" (for AND)
-             array "conditions" - up to 10 different criteria to apply while segmenting. Each criteria row must contain 3 keys - "<strong>field</strong>", "<strong>op</strong>", and "<strong>value</strong>" - and possibly a fourth, "<strong>extra</strong>", based on these definitions:
-    
-            Field = "<strong>date</strong>" : Select based on signup date
-                Valid Op(eration): <strong>eq</strong> (is) / <strong>gt</strong> (after) / <strong>lt</strong> (before)
-                Valid Values: 
-                string last_campaign_sent  uses the date of the last campaign sent
-                string campaign_id - uses the send date of the campaign that carriers the Id submitted - see campaigns()
-                string YYYY-MM-DD - any date in the form of YYYY-MM-DD - <em>note:</em> anything that appears to start with YYYY will be treated as a date
-                          
-            Field = "<strong>interests-X</strong>": where X is the Grouping Id from listInterestGroupings()
-                Valid Op(erations): <strong>one</strong> / <strong>none</strong> / <strong>all</strong> 
-                Valid Values: a comma delimited of interest groups for the list - see listInterestGroupings()
-        
-            Field = "<strong>aim</strong>"
-                Valid Op(erations): <strong>open</strong> / <strong>noopen</strong> / <strong>click</strong> / <strong>noclick</strong>
-                Valid Values: "<strong>any</strong>" or a valid AIM-enabled Campaign that has been sent
-    
-            Field = "<strong>rating</strong>" : allows matching based on list member ratings
-                Valid Op(erations):  <strong>eq</strong> (=) / <strong>ne</strong> (!=) / <strong>gt</strong> (&gt;) / <strong>lt</strong> (&lt;)
-                Valid Values: a number between 0 and 5
-    
-            Field = "<strong>ecomm_prod</strong>" or "<strong>ecomm_prod</strong>": allows matching product and category names from purchases
-                Valid Op(erations): 
-                 <strong>eq</strong> (=) / <strong>ne</strong> (!=) / <strong>gt</strong> (&gt;) / <strong>lt</strong> (&lt;) / <strong>like</strong> (like '%blah%') / <strong>nlike</strong> (not like '%blah%') / <strong>starts</strong> (like 'blah%') / <strong>ends</strong> (like '%blah')
-                Valid Values: any string
-    
-            Field = "<strong>ecomm_spent_one</strong>" or "<strong>ecomm_spent_all</strong>" : allows matching purchase amounts on a single order or all orders
-                Valid Op(erations): <strong>gt</strong> (&gt;) / <strong>lt</strong> (&lt;)
-                Valid Values: a number
-    
-            Field = "<strong>ecomm_date</strong>" : allow matching based on order dates
-                Valid Op(eration): <strong>eq</strong> (is) / <strong>gt</strong> (after) / <strong>lt</strong> (before)
-                Valid Values: 
-                string YYYY-MM-DD - any date in the form of YYYY-MM-DD
-                
-            Field = "<strong>social_gender</strong>" : allows matching against the gender acquired from SocialPro
-                Valid Op(eration): <strong>eq</strong> (is) / <strong>ne</strong> (is not)
-                Valid Values: male, female
-                
-            Field = "<strong>social_age</strong>" : allows matching against the age acquired from SocialPro
-                Valid Op(erations):  <strong>eq</strong> (=) / <strong>ne</strong> (!=) / <strong>gt</strong> (&gt;) / <strong>lt</strong> (&lt;)
-                Valid Values: any number
-    
-            Field = "<strong>social_influence</strong>" : allows matching against the influence acquired from SocialPro
-                Valid Op(erations):  <strong>eq</strong> (=) / <strong>ne</strong> (!=) / <strong>gt</strong> (&gt;) / <strong>lt</strong> (&lt;)
-                Valid Values: a number between 0 and 5
-    
-            Field = "<strong>social_network</strong>" : 
-                Valid Op(erations):  <strong>member</strong> (is a member of) / <strong>notmember</strong> (is not a member of)
-                Valid Values: twitter, facebook, myspace, linkedin, flickr
-    
-            Field = "<strong>static_segment</strong>" : 
-                Valid Op(eration): <strong>eq</strong> (is in) / <strong>ne</strong> (is not in)
-                Valid Values: an int - get from listStaticSegments()
-    
-            Field = An <strong>Address</strong> Merge Var. Use <strong>Merge0-Merge30</strong> or the <strong>Custom Tag</strong> you've setup for your merge field - see listMergeVars(). Note, Address fields can still be used with the default operations below - this section is broken out solely to highlight the differences in using the geolocation routines.
-                Valid Op(erations): <strong>geoin</strong>
-                Valid Values: The number of miles an address should be within
-                Extra Value: The Zip Code to be used as the center point
-        
-            Default Field = A Merge Var. Use <strong>Merge0-Merge30</strong> or the <strong>Custom Tag</strong> you've setup for your merge field - see listMergeVars()
-                Valid Op(erations): 
-                 <strong>eq</strong> (=) / <strong>ne</strong> (!=) / <strong>gt</strong> (&gt;) / <strong>lt</strong> (&lt;) / <strong>like</strong> (like '%blah%') / <strong>nlike</strong> (not like '%blah%') / <strong>starts</strong> (like 'blah%') / <strong>ends</strong> (like '%blah')
-                Valid Values: any string
      * @return int total The total number of subscribers matching your segmentation options
      */
     function campaignSegmentTest($list_id, $options) {
@@ -255,63 +190,9 @@ class MCAPI {
      *
      * @param string $type the Campaign Type to create - one of "regular", "plaintext", "absplit", "rss", "trans", "auto"
      * @param array $options a hash of the standard options for this campaign :
-            string list_id the list to send this campaign to- get lists using lists()
-            string subject the subject line for your campaign message
-            string from_email the From: email address for your campaign message
-            string from_name the From: name for your campaign message (not an email address)
-            string to_name the To: name recipients will see (not email address)
-            int template_id optional - use this user-created template to generate the HTML content of the campaign (takes precendence over other template options)
-            int gallery_template_id optional - use a template from the public gallery to generate the HTML content of the campaign (takes precendence over base template options)
-            int base_template_id optional - use this a base/start-from-scratch template to generate the HTML content of the campaign
-            int folder_id optional - automatically file the new campaign in the folder_id passed. Get using folders() - note that Campaigns and Autoresponders have separate folder setupsn 
-            array tracking optional - set which recipient actions will be tracked, as a struct of boolean values with the following keys: "opens", "html_clicks", and "text_clicks".  By default, opens and HTML clicks will be tracked. Click tracking can not be disabled for Free accounts.
-            string title optional - an internal name to use for this campaign.  By default, the campaign subject will be used.
-            boolean authenticate optional - set to true to enable SenderID, DomainKeys, and DKIM authentication, defaults to false.
-            array analytics optional - if provided, use a struct with "service type" as a key and the "service tag" as a value. For Google, this should be "google"=>"your_google_analytics_key_here". Note that only "google" is currently supported - a Google Analytics tags will be added to all links in the campaign with this string attached. Others may be added in the future
-            boolean auto_footer optional Whether or not we should auto-generate the footer for your content. Mostly useful for content from URLs or Imports
-            boolean inline_css optional Whether or not css should be automatically inlined when this campaign is sent, defaults to false.
-            boolean generate_text optional Whether of not to auto-generate your Text content from the HTML content. Note that this will be ignored if the Text part of the content passed is not empty, defaults to false.
-            boolean auto_tweet optional If set, this campaign will be auto-tweeted when it is sent - defaults to false. Note that if a Twitter account isn't linked, this will be silently ignored.
-            boolean timewarp optional If set, this campaign must be scheduled 24 hours in advance of sending - default to false. Only valid for "regular" campaigns and "absplit" campaigns that split on schedule_time.
-            boolean ecomm360 optional If set, our <a href="http://www.mailchimp.com/blog/ecommerce-tracking-plugin/" target="_blank">Ecommerce360 tracking</a> will be enabled for links in the campaign
-    
     * @param array $content the content for this campaign - use a struct with the following keys: 
-                string html for pasted HTML content
-                string text for the plain-text version
-                string url to have us pull in content from a URL. Note, this will override any other content options - for lists with Email Format options, you'll need to turn on generate_text as well
-                string archive to send a Base64 encoded archive file for us to import all media from. Note, this will override any other content options - for lists with Email Format options, you'll need to turn on generate_text as well
-                string archive_type optional - only necessary for the "archive" option. Supported formats are: zip, tar.gz, tar.bz2, tar, tgz, tbz . If not included, we will default to zip
-                
-                If you chose a template instead of pasting in your HTML content, then use "html_" followed by the template sections as keys - for example, use a key of "html_MAIN" to fill in the "MAIN" section of a template. Supported template sections include: "html_HEADER", "html_MAIN", "html_SIDECOLUMN", and "html_FOOTER"
     * @param array $segment_opts optional - if you wish to do Segmentation with this campaign this array should contain: see campaignSegmentTest(). It's suggested that you test your options against campaignSegmentTest(). Also, "trans" campaigns <strong>do not</strong> support segmentation.
     * @param array $type_opts optional - 
-            For RSS Campaigns this, array should contain:
-                string url the URL to pull RSS content from - it will be verified and must exist
-                string schedule optional one of "daily", "weekly", "monthly" - defaults to "daily"
-                string schedule_hour optional an hour between 0 and 24 - default to 4 (4am <em>local time</em>) - applies to all schedule types
-                string schedule_weekday optional for "weekly" only, a number specifying the day of the week to send: 0 (Sunday) - 6 (Saturday) - defaults to 1 (Monday)
-                string schedule_monthday optional for "monthly" only, a number specifying the day of the month to send (1 - 28) or "last" for the last day of a given month. Defaults to the 1st day of the month
-             
-            For A/B Split campaigns, this array should contain:
-                string split_test The values to segment based on. Currently, one of: "subject", "from_name", "schedule". NOTE, for "schedule", you will need to call campaignSchedule() separately!
-                string pick_winner How the winner will be picked, one of: "opens" (by the open_rate), "clicks" (by the click rate), "manual" (you pick manually)
-                int wait_units optional the default time unit to wait before auto-selecting a winner - use "3600" for hours, "86400" for days. Defaults to 86400.
-                int wait_time optional the number of units to wait before auto-selecting a winner - defaults to 1, so if not set, a winner will be selected after 1 Day.
-                int split_size optional this is a percentage of what size the Campaign's List plus any segmentation options results in. "schedule" type forces 50%, all others default to 10%
-                string from_name_a optional sort of, required when split_test is "from_name"
-                string from_name_b optional sort of, required when split_test is "from_name"
-                string from_email_a optional sort of, required when split_test is "from_name"
-                string from_email_b optional sort of, required when split_test is "from_name"
-                string subject_a optional sort of, required when split_test is "subject"
-                string subject_b optional sort of, required when split_test is "subject"
-                
-            For AutoResponder campaigns, this array should contain:
-                string offset-units one of "day", "week", "month", "year" - required
-                string offset-time optional, sort of - the number of units must be a number greater than 0 for signup based autoresponders
-                string offset-dir either "before" or "after"
-                string event optional "signup" (default) to base this on double-optin signup, "date" or "annual" to base this on merge field in the list
-                string event-datemerge optional sort of, this is required if the event is "date" or "annual"
-    
      *
      * @return string the ID for the created campaign
      */
@@ -390,55 +271,11 @@ class MCAPI {
      * @example xml-rpc_campaigns.php
      *
      * @param array $filters a hash of filters to apply to this query - all are optional:
-            string  campaign_id optional - return a single campaign using a know campaign_id
-            string  list_id optional - the list to send this campaign to- get lists using lists(). Accepts multiples separated by commas when not using exact matching.
-            int folder_id optional - only show campaigns from this folder id - get folders using campaignFolders(). Accepts multiples separated by commas when not using exact matching.
-            int template_id optional - only show campaigns using this template id - get templates using templates(). Accepts multiples separated by commas when not using exact matching.
-            string  status optional - return campaigns of a specific status - one of "sent", "save", "paused", "schedule", "sending". Accepts multiples separated by commas when not using exact matching.
-            string  type optional - return campaigns of a specific type - one of "regular", "plaintext", "absplit", "rss", "trans", "auto". Accepts multiples separated by commas when not using exact matching.
-            string  from_name optional - only show campaigns that have this "From Name"
-            string  from_email optional - only show campaigns that have this "Reply-to Email"
-            string  title optional - only show campaigns that have this title
-            string  subject optional - only show campaigns that have this subject
-            string  sendtime_start optional - only show campaigns that have been sent since this date/time (in GMT) - format is YYYY-MM-DD HH:mm:ss (24hr)
-            string  sendtime_end optional - only show campaigns that have been sent before this date/time (in GMT) - format is YYYY-MM-DD HH:mm:ss (24hr)
-            boolean exact optional - flag for whether to filter on exact values when filtering, or search within content for filter values - defaults to true. Using this disables the use of any filters that accept multiples.
      * @param int $start optional - control paging of campaigns, start results at this campaign #, defaults to 1st page of data  (page 0)
      * @param int $limit optional - control paging of campaigns, number of campaigns to return with each call, defaults to 25 (max=1000)
      * @return array an array containing a count of all matching campaigns and the specific ones for the current page (see Returned Fields for description)
      * @returnf int total the total number of campaigns matching the filters passed in
      * @returnf array data the data for each campaign being returned
-            string id Campaign Id (used for all other campaign functions)
-            int web_id The Campaign id used in our web app, allows you to create a link directly to it
-            string list_id The List used for this campaign
-            int folder_id The Folder this campaign is in
-            int template_id The Template this campaign uses
-            string content_type How the campaign's content is put together - one of 'template', 'html', 'url'
-            string title Title of the campaign
-            string type The type of campaign this is (regular,plaintext,absplit,rss,inspection,trans,auto)
-            string create_time Creation time for the campaign
-            string send_time Send time for the campaign - also the scheduled time for scheduled campaigns.
-            int emails_sent Number of emails email was sent to
-            string status Status of the given campaign (save,paused,schedule,sending,sent)
-            string from_name From name of the given campaign
-            string from_email Reply-to email of the given campaign
-            string subject Subject of the given campaign
-            string to_name Custom "To:" email string using merge variables
-            string archive_url Archive link for the given campaign
-            boolean inline_css Whether or not the campaign content's css was auto-inlined
-            string analytics Either "google" if enabled or "N" if disabled
-            string analytics_tag The name/tag the campaign's links were tagged with if analytics were enabled.
-            boolean authenticate Whether or not the campaign was authenticated
-            boolean ecomm360 Whether or not ecomm360 tracking was appended to links
-            boolean auto_tweet Whether or not the campaign was auto tweeted after sending
-            string auto_fb_post A comma delimited list of Facebook Profile/Page Ids the campaign was posted to after sending. If not used, blank.
-            boolean auto_footer Whether or not the auto_footer was manually turned on
-            boolean timewarp Whether or not the campaign used Timewarp
-            boolean timewarp_schedule The time, in GMT, that the Timewarp campaign is being sent. For A/B Split campaigns, this is blank and is instead in their schedule_a and schedule_b in the type_opts array
-            array tracking containing "text_clicks", "html_clicks", and "opens" as boolean values representing whether or not they were enabled
-            string segment_text a string marked-up with HTML explaining the segment used for the campaign in plain English 
-            array segment_opts the segment used for the campaign - can be passed to campaignSegmentTest() or campaignCreate()
-            array type_opts the type-specific options for the campaign - can be passed to campaignCreate()
      */
     function campaigns($filters=array (
 ), $start=0, $limit=25) {
@@ -475,28 +312,7 @@ class MCAPI {
      * @returnf int users_who_clicked Number of unique recipients who clicked on a link in the campaign.
      * @returnf int emails_sent Number of email addresses campaign was sent to.
      * @returnf array absplit If this was an absplit campaign, stats for the A and B groups will be returned
-            int bounces_a bounces for the A group
-            int bounces_b bounces for the B group
-            int forwards_a forwards for the A group
-            int forwards_b forwards for the B group
-            int abuse_reports_a abuse reports for the A group
-            int abuse_reports_b abuse reports for the B group
-            int unsubs_a unsubs for the A group
-            int unsubs_b unsubs for the B group
-            int recipients_click_a clicks for the A group
-            int recipients_click_b clicks for the B group
-            int forwards_opens_a opened forwards for the A group
-            int forwards_opens_b opened forwards for the A group
-     * @returnf array timewarp If this campaign was a Timewarp campaign, an array of stats from each timezone for it, with the GMT offset as they key. Each timezone will contain:
-            int opens opens for this timezone
-            string last_open the date/time of the last open for this timezone
-            int unique_opens the unique opens for this timezone
-            int clicks the total clicks for this timezone
-            string last_click the date/time of the last click for this timezone
-            int unique_opens the unique clicks for this timezone
-            int bounces the total bounces for this timezone
-            int total the total number of members sent to in this timezone
-            int sent the total number of members delivered to in this timezone        
+     * @returnf array timewarp If this campaign was a Timewarp campaign, an array of stats from each timezone for it, with the GMT offset as they key. Each timezone will contain:     
      */
     function campaignStats($cid) {
         $params = array();
@@ -565,10 +381,6 @@ class MCAPI {
      * @return array a total of all matching emails and the specific emails for this page
      * @returnf int total   the total number of members for the campaign and status
      * @returnf array data  the full campaign member records
-            string email the email address sent to
-            string status the status of the send - one of 'sent', 'hard', 'soft'
-            string absplit_group if this was an absplit campaign, one of 'a','b', or 'winner'
-            string tz_group if this was an timewarp campaign the timezone GMT offset the member was included in
      */
     function campaignMembers($cid, $status=NULL, $start=0, $limit=1000) {
         $params = array();
@@ -592,7 +404,6 @@ class MCAPI {
      * @return array a total of all hard bounced emails and the specific emails for this page
      * @returnf int total   the total number of hard bounces for the campaign
      * @returnf array data  the full email addresses that bounced
-                string email the email address that bounced
      */
     function campaignHardBounces($cid, $start=0, $limit=1000) {
         $params = array();
@@ -615,7 +426,6 @@ class MCAPI {
      * @return array a total of all soft bounced emails and the specific emails for this page
      * @returnf int total   the total number of soft bounces for the campaign
      * @returnf array data the full email addresses that bounced
-                string email the email address that bounced
      */
     function campaignSoftBounces($cid, $start=0, $limit=1000) {
         $params = array();
@@ -637,9 +447,6 @@ class MCAPI {
      * @return array a total of all unsubscribed emails and the specific emails for this page
      * @returnf int total   the total number of unsubscribes for the campaign
      * @returnf array data  the full email addresses that unsubscribed
-                string email the email address that unsubscribed
-                string reason For unsubscribes only - the reason collected for the unsubscribe. If populated, one of 'NORMAL','NOSIGNUP','INAPPROPRIATE','SPAM','OTHER'
-                string reason_text For unsubscribes only - if the reason is OTHER, the text entered.
      */
     function campaignUnsubscribes($cid, $start=0, $limit=1000) {
         $params = array();
@@ -768,23 +575,8 @@ class MCAPI {
      * @param string $cid the campaign id to pull bounces for (can be gathered using campaigns())
      * @return array stats an array containing tweets, retweets, clicks, and referrer related to using the campaign's eepurl
      * @returnf array twitter various Twitter related stats
-            int tweets Total number of tweets seen
-            string first_tweet date and time of the first tweet seen
-            string last_tweet date and time of the last tweet seen
-            int retweets Total number of retweets seen
-            string first_retweet date and time of the first retweet seen
-            string last_retweet date and time of the last retweet seen
-            array statuses an array of statuses recorded inclduing the status, screen_name, status_id, and datetime fields plus an is_retweet flag
      * @returnf array clicks stats related to click-throughs on the eepurl
-            int clicks Total number of clicks seen
-            string first_click date and time of the first click seen
-            string last_click date and time of the first click seen
-            array locations an array of geographic locations including country, region, and total clicks
      * @returnf array referrers an array of arrays, each containing
-            string referrer the referrer, truncated to 100 bytes
-            int clicks Total number of clicks seen from this referrer
-            string first_click date and time of the first click seen from this referrer
-            string last_click date and time of the first click seen from this referrer
      */
     function campaignEepUrlStats($cid) {
         $params = array();
@@ -829,9 +621,6 @@ class MCAPI {
      * @return array bounces the full bounce messages for this campaign
      * @returnf int total that total number of bounce messages for the campaign
      * @returnf array data an array containing the data for this page
-                string date date/time the bounce was received and processed
-                string email the email address that bounced
-                string message the entire bounce message received
      */
     function campaignBounceMessages($cid, $start=0, $limit=25, $since=NULL) {
         $params = array();
@@ -854,15 +643,6 @@ class MCAPI {
      * @return array the total matching orders and the specific orders for the requested page
      * @returnf int total the total matching orders
      * @returnf array data the actual data for each order being returned
-            string store_id the store id generated by the plugin used to uniquely identify a store
-            string store_name the store name collected by the plugin - often the domain name
-            string order_id the internal order id the store tracked this order by
-            string email  the email address that received this campaign and is associated with this order
-            double order_total the order total
-            double tax_total the total tax for the order (if collected)
-            double ship_total the shipping total for the order (if collected)
-            string order_date the date the order was tracked - from the store if possible, otherwise the GMT time we recieved it
-            array lines containing detail of the order - product, category, quantity, item cost
      */
     function campaignEcommOrders($cid, $start=0, $limit=100, $since=NULL) {
         $params = array();
@@ -880,13 +660,6 @@ class MCAPI {
      *
      * @param string $cid the campaign id to share a report for (can be gathered using campaigns())
      * @param array  $opts optional various parameters which can be used to configure the shared report
-            string  header_type optional - "text" or "image', defaults to "text'
-            string  header_data optional - if "header_type" is text, the text to display. if "header_type" is "image" a valid URL to an image file. Note that images will be resized to be no more than 500x150. Defaults to the Accounts Company Name.
-            boolean    secure optional - whether to require a password for the shared report. defaults to "true"
-            string  password optional - if secure is true and a password is not included, we will generate one. It is always returned.
-            string  to_email optional - optional, email address to share the report with - no value means an email will not be sent
-            array   theme  optional - an array containing either 3 or 6 character color code values for: "bg_color", "header_color", "current_tab", "current_tab_text", "normal_tab", "normal_tab_text", "hover_tab", "hover_tab_text"
-            string  css_url    optional - a link to an external CSS file to be included after our default CSS (http://vip-reports.net/css/vip.css) <strong>only if</strong> loaded via the "secure_url" - max 255 bytes
      * @return struct Struct containing details for the shared report
      * @returnf string title The Title of the Campaign being shared
      * @returnf string url The URL to the shared report
@@ -946,8 +719,6 @@ class MCAPI {
      * @return array array containing the total records matched and the specific records for this page
      * @returnf int total the total number of records matched
      * @returnf array data the actual opens data, including:
-            string email Email address that opened the campaign
-            int open_count Total number of times the campaign was opened by this email address
      */
     function campaignOpenedAIM($cid, $start=0, $limit=1000) {
         $params = array();
@@ -968,7 +739,6 @@ class MCAPI {
      * @return array array containing the total records matched and the specific records for this page
      * @returnf int total the total number of records matched
      * @returnf array data the email addresses that did not open the campaign
-            string email Email address that opened the campaign
      */
     function campaignNotOpenedAIM($cid, $start=0, $limit=1000) {
         $params = array();
@@ -990,8 +760,6 @@ class MCAPI {
      * @return array array containing the total records matched and the specific records for this page
      * @returnf int total the total number of records matched
      * @returnf array data the email addresses that did not open the campaign
-                string email Email address that opened the campaign
-                int clicks Total number of times the URL was clicked on by this email address
      */
     function campaignClickDetailAIM($cid, $url, $start=0, $limit=1000) {
         $params = array();
@@ -1013,9 +781,6 @@ class MCAPI {
      * @returnf int success the number of email address records found
      * @returnf int error the number of email address records which could not be found
      * @returnf array data arrays containing the actions (opens and clicks) that the email took, with timestamps
-            string action The action taken (open or click)
-            string timestamp Time the action occurred
-            string url For clicks, the URL that was clicked
      */
     function campaignEmailStatsAIM($cid, $email_address) {
         $params = array();
@@ -1037,9 +802,6 @@ class MCAPI {
      * @return array Array containing a total record count and data including the actions  (opens and clicks) for each email, with timestamps
      * @returnf int total the total number of records
      * @returnf array data each record with their details:
-            string action The action taken (open or click)
-            string timestamp Time the action occurred
-            string url For clicks, the URL that was clicked
      */
     function campaignEmailStatsAIMAll($cid, $start=0, $limit=100) {
         $params = array();
@@ -1055,26 +817,6 @@ class MCAPI {
      * @section Campaign  Related
      *
      * @param array $order an array of information pertaining to the order that has completed. Use the following keys:
-                string id the Order Id
-                string campaign_id the Campaign Id to track this order with (see the "mc_cid" query string variable a campaign passes)
-                string email_id the Email Id of the subscriber we should attach this order to (see the "mc_eid" query string variable a campaign passes)
-                double total The Order Total (ie, the full amount the customer ends up paying)
-                string order_date optional the date of the order - if this is not provided, we will default the date to now
-                double shipping optional the total paid for Shipping Fees
-                double tax optional the total tax paid
-                string store_id a unique id for the store sending the order in (20 bytes max)
-                string store_name optional a "nice" name for the store - typically the base web address (ie, "store.mailchimp.com"). We will automatically update this if it changes (based on store_id)
-                string plugin_id the MailChimp assigned Plugin Id. Get yours by <a href="/register.php">registering here</a>
-                array items the individual line items for an order using these keys:
-                <div style="padding-left:30px"><table><tr><td colspan=*>
-                    int line_num optional the line number of the item on the order. We will generate these if they are not passed
-                    int product_id the store's internal Id for the product. Lines that do no contain this will be skipped 
-                    string product_name the product name for the product_id associated with this item. We will auto update these as they change (based on product_id)
-                    int category_id the store's internal Id for the (main) category associated with this product. Our testing has found this to be a "best guess" scenario
-                    string category_name the category name for the category_id this product is in. Our testing has found this to be a "best guess" scenario. Our plugins walk the category heirarchy up and send "Root - SubCat1 - SubCat4", etc.
-                    double qty the quantity of the item ordered
-                    double cost the cost of a single item (ie, not the extended cost of the line)
-                </td></tr></table></div>
      * @return bool true if the data is saved, otherwise an error is thrown.
      */
     function campaignEcommOrderAdd($order) {
@@ -1091,47 +833,11 @@ class MCAPI {
      * @example xml-rpc_lists.php
      *
      * @param array $filters a hash of filters to apply to this query - all are optional:
-            string list_id optional - return a single list using a known list_id. Accepts multiples separated by commas when not using exact matching
-            string list_name optional - only lists that match this name
-            string from_name optional - only lists that have a default from name matching this
-            string from_email optional - only lists that have a default from email matching this
-            string from_subject optional - only lists that have a default from email matching this
-            string created_before optional - only show lists that were created before this date/time (in GMT) - format is YYYY-MM-DD HH:mm:ss (24hr)
-            string created_after optional - only show lists that were created since this date/time (in GMT) - format is YYYY-MM-DD HH:mm:ss (24hr)
-            boolean exact optional - flag for whether to filter on exact values when filtering, or search within content for filter values - defaults to true
      * @param int $start optional - control paging of lists, start results at this list #, defaults to 1st page of data  (page 0)
      * @param int $limit optional - control paging of lists, number of lists to return with each call, defaults to 25 (max=100)
      * @return array an array with keys listed in Returned Fields below
      * @returnf int total the total number of lists which matched the provided filters
      * @returnf array data the lists which matched the provided filters, including the following for 
-             string id The list id for this list. This will be used for all other list management functions.
-             int web_id The list id used in our web app, allows you to create a link directly to it
-             string name The name of the list.
-             string date_created The date that this list was created.
-             boolean email_type_option Whether or not the List supports multiple formats for emails or just HTML
-             boolean use_awesomebar Whether or not campaigns for this list use the Awesome Bar in archives by default
-             string default_from_name Default From Name for campaigns using this list
-             string default_from_email Default From Email for campaigns using this list
-             string default_subject Default Subject Line for campaigns using this list
-             string default_language Default Language for this list's forms
-             int list_rating An auto-generated activity score for the list (0 - 5)
-             array stats various stats and counts for the list
-                 int member_count The number of active members in the given list.
-                 int unsubscribe_count The number of members who have unsubscribed from the given list.
-                 int cleaned_count The number of members cleaned from the given list.
-                 int member_count_since_send The number of active members in the given list since the last campaign was sent
-                 int unsubscribe_count_since_send The number of members who have unsubscribed from the given list since the last campaign was sent
-                 int cleaned_count_since_send The number of members cleaned from the given list since the last campaign was sent
-                 int campaign_count The number of campaigns in any status that use this list
-                 int grouping_count The number of Interest Groupings for this list
-                 int group_count The number of Interest Groups (regardless of grouping) for this list
-                 int merge_var_count The number of merge vars for this list (not including the required EMAIL one) 
-                 int avg_sub_rate the average number of subscribe per month for the list (empty value if we haven't calculated this yet)
-                 int avg_unsub_rate the average number of unsubscribe per month for the list (empty value if we haven't calculated this yet)
-                 int target_sub_rate the target subscription rate for the list to keep it growing (empty value if we haven't calculated this yet)
-                 int open_rate the average open rate per campaign for the list  (empty value if we haven't calculated this yet)
-                 int click_rate the average click rate per campaign for the list  (empty value if we haven't calculated this yet)
-             array modules Any list specific modules installed for this list (example is SocialPro)
      */
     function lists($filters=array (
 ), $start=0, $limit=25) {
@@ -1177,13 +883,6 @@ class MCAPI {
      * @param string $tag The merge tag to add, e.g. FNAME
      * @param string $name The long description of the tag being added, used for user displays
      * @param array $options optional Various options for this merge var. <em>note:</em> for historical purposes this can also take a "boolean"
-                    string field_type optional one of: text, number, radio, dropdown, date, address, phone, url, imageurl - defaults to text
-                    boolean req optional indicates whether the field is required - defaults to false
-                    boolean public optional indicates whether the field is displayed in public - defaults to true
-                    boolean show optional indicates whether the field is displayed in the app's list member view - defaults to true
-                    string default_value optional the default value for the field. See listSubscribe() for formatting info. Defaults to blank
-                    array choices optional kind of - an array of strings to use as the choices for radio and dropdown type fields
-    
      * @return bool true if the request succeeds, otherwise an error will be thrown
      */
     function listMergeVarAdd($id, $tag, $name, $options=array (
@@ -1539,24 +1238,6 @@ class MCAPI {
      * @param string $id the list id to connect to. Get by calling lists()
      * @param string $email_address the email address to subscribe
      * @param array $merge_vars optional merges for the email (FNAME, LNAME, etc.) (see examples below for handling "blank" arrays). Note that a merge field can only hold up to 255 bytes. Also, there are a few "special" keys:
-                        string EMAIL set this to change the email address. This is only respected on calls using update_existing or when passed to listUpdateMember()
-                        array GROUPINGS Set Interest Groups by Grouping. Each element in this array should be an array containing the "groups" parameter which contains a comma delimited list of Interest Groups to add. Commas in Interest Group names should be escaped with a backslash. ie, "," =&gt; "\," and either an "id" or "name" parameter to specify the Grouping - get from listInterestGroupings()
-                        string OPTINIP Set the Opt-in IP fields. <em>Abusing this may cause your account to be suspended.</em> We do validate this and it must not be a private IP address.
-                        array MC_LOCATION Set the members geographic location. By default if this merge field exists, we'll update using the optin_ip if it exists. If the array contains LATITUDE and LONGITUDE keys, they will be used. NOTE - this will slow down each subscribe call a bit, especially for lat/lng pairs in sparsely populated areas. Currently our automated background processes can and will overwrite this based on opens and clicks.
-                        
-                        <strong>Handling Field Data Types</strong> - most fields you can just pass a string and all is well. For some, though, that is not the case...
-                        Field values should be formatted as follows:
-                        string address For the string version of an Address, the fields should be delimited by <strong>2</strong> spaces. Address 2 can be skipped. The Country should be a 2 character ISO-3166-1 code and will default to your default country if not set
-                        array address For the array version of an Address, the requirements for Address 2 and Country are the same as with the string version. Then simply pass us an array with the keys <strong>addr1</strong>, <strong>addr2</strong>, <strong>city</strong>, <strong>state</strong>, <strong>zip</strong>, <strong>country</strong> and appropriate values for each
-    
-                        string date use YYYY-MM-DD to be safe. Generally, though, anything strtotime() understands we'll understand - <a href="http://us2.php.net/strtotime" target="_blank">http://us2.php.net/strtotime</a>
-                        string dropdown can be a normal string - we <em>will</em> validate that the value is a valid option
-                        string image must be a valid, existing url. we <em>will</em> check its existence
-                        string multi_choice can be a normal string - we <em>will</em> validate that the value is a valid option
-                        double number pass in a valid number - anything else will turn in to zero (0). Note, this will be rounded to 2 decimal places
-                        string phone If your account has the US Phone numbers option set, this <em>must</em> be in the form of NPA-NXX-LINE (404-555-1212). If not, we assume an International number and will simply set the field with what ever number is passed in.
-                        string website This is a standard string, but we <em>will</em> verify that it looks like a valid URL
-    
      * @param string $email_type optional email type preference for the email (html, text, or mobile defaults to html)
      * @param bool $double_optin optional flag to control whether a double opt-in confirmation message is sent, defaults to true. <em>Abusing this may cause your account to be suspended.</em>
      * @param bool $update_existing optional flag to control whether a existing subscribers should be updated instead of throwing and error, defaults to false
@@ -1645,9 +1326,6 @@ class MCAPI {
      * @returnf int update_count Number of email addresses that were succesfully updated
      * @returnf int error_count Number of email addresses that failed during addition/updating
      * @returnf array errors Array of error arrays, each containing:
-            string code the error code
-            string message the full error message
-            string email the email address being processed
      */
     function listBatchSubscribe($id, $batch, $double_optin=true, $update_existing=false, $replace_interests=true) {
         $params = array();
@@ -1700,10 +1378,6 @@ class MCAPI {
      * @return array Array of a the total records match and matching list member data for this page (see Returned Fields for details)
      * @returnf int total the total matching records
      * @returnf array data the data for each member, including:
-            string email Member email address
-            date timestamp timestamp of their associated status date (subscribed, unsubscribed, cleaned, or updated) in GMT
-            string reason For unsubscribes only - the reason collected for the unsubscribe. If populated, one of 'NORMAL','NOSIGNUP','INAPPROPRIATE','SPAM','OTHER'
-            string reason_text For unsubscribes only - if the reason is OTHER, the text entered.
      */
     function listMembers($id, $status='subscribed', $since=NULL, $start=0, $limit=100) {
         $params = array();
@@ -1728,21 +1402,6 @@ class MCAPI {
      * @returnf int success the number of subscribers successfully found on the list
      * @returnf int errors the number of subscribers who were not found on the list
      * @returnf array data an array of arrays where each one has member info:
-            string id The unique id for this email address on an account
-            string email The email address associated with this record
-            string email_type The type of emails this customer asked to get: html, text, or mobile
-            array merges An associative array of all the merge tags and the data for those tags for this email address. <em>Note</em>: Interest Groups are returned as comma delimited strings - if a group name contains a comma, it will be escaped with a backslash. ie, "," =&gt; "\,". Groupings will be returned with their "id" and "name" as well as a "groups" field formatted just like Interest Groups
-            string status The subscription status for this email address, either pending, subscribed, unsubscribed, or cleaned
-            string ip_opt IP Address this address opted in from. 
-            string ip_signup IP Address this address signed up from.
-            int member_rating the rating of the subscriber. This will be 1 - 5 as described <a href="http://eepurl.com/f-2P" target="_blank">here</a>
-            string campaign_id If the user is unsubscribed and they unsubscribed from a specific campaign, that campaign_id will be listed, otherwise this is not returned.
-            array lists An associative array of the other lists this member belongs to - the key is the list id and the value is their status in that list.
-            date timestamp The time this email address was added to the list
-            date info_changed The last time this record was changed. If the record is old enough, this may be blank.
-            int web_id The Member id used in our web app, allows you to create a link directly to it
-            array clients the various clients we've tracked the address as using - each included array includes client 'name' and 'icon_url'
-            array static_segments the 'id', 'name', and date 'added' for any static segment this member is in
      */
     function listMemberInfo($id, $email_address) {
         $params = array();
@@ -1764,11 +1423,6 @@ class MCAPI {
      * @returnf int success the number of subscribers successfully found on the list
      * @returnf int errors the number of subscribers who were not found on the list
      * @returnf array data an array of arrays where each activity record has:
-            string action The action name, one of: open, click, bounce, unsub, abuse, sent
-            string timestamp The date/time of the action
-            string url For click actions, the url clicked, otherwise this is empty
-            string bounce_type For bounce actions, the bounce type, otherwise this is empty
-            string campaign_id The campaign id the action was related to, if it exists - otherwise empty (ie, direct unsub from list)
      */
     function listMemberActivity($id, $email_address) {
         $params = array();
@@ -1791,10 +1445,6 @@ class MCAPI {
      * @return array the total of all reports and the specific reports reports this page
      * @returnf int total the total number of matching abuse reports
      * @returnf array data the actual data for each reports, including:
-            string date date/time the abuse report was received and processed
-            string email the email address that reported abuse
-            string campaign_id the unique id for the campaign that report was made against
-            string type an internal type generally specifying the orginating mail provider - may not be useful outside of filling report views
      */
     function listAbuseReports($id, $start=0, $limit=500, $since=NULL) {
         $params = array();
@@ -1877,11 +1527,7 @@ class MCAPI {
      * @param string $id the list id to connect to. Get by calling lists()
      * @return array the desktop and mobile user agents in use on the list
      * @returnf array desktop desktop user agents and percentages
-            double penetration the percent of desktop clients in use
-            array clients a record containing the 'client', an 'icon' image url, the 'percent' using the client, and the total 'members' represented
      * @returnf array mobile mobile user agents and percentages
-            double penetration the percent of mobile clients in use
-            array clients a record containing the 'client', an 'icon' image url, the 'percent' using the client, and the total 'members' represented
      */
     function listClients($id) {
         $params = array();
@@ -1897,13 +1543,8 @@ class MCAPI {
      * @example xml-rpc_templates.php
      *
      * @param array $types optional the types of templates to return
-                        boolean user    Customer template for this user account. Defaults to true.
-                        boolean gallery Templates from our Gallery. Note that some templates that require extra configuration are withheld. (eg, the Etsy template). Defaults to false.
-                        boolean base    Our "start from scratch" extremely basic templates
      * @param string $category optional for Gallery templates only, limit to a specific template category
      * @param array $inactives optional options to control how inactive templates are returned, if at all
-                        boolean include user templates are not deleted, only set inactive. defaults to false.
-                        boolean only    only include inactive templates. defaults to false.
      * @return array An array of structs, one for each template (see Returned Fields for details)
      * @returnf int id Id of the template
      * @returnf string name Name of the template
@@ -1967,9 +1608,6 @@ class MCAPI {
      *
      * @param int $id the id of the user template to update
      * @param array  $values the values to updates - while both are optional, at least one should be provided. Both can be updated at the same time.
-            string name optional the name for the template - names must be unique and a max of 50 bytes
-            string html optional a string specifying the entire template to be created. This is <strong>NOT</strong> campaign content. They are intended to utilize our <a href="http://www.mailchimp.com/resources/email-template-language/" target="_blank">template language</a>.
-        
      * @return boolean true if the template was updated, otherwise an error will be thrown
      */
     function templateUpdate($id, $values) {
@@ -2030,36 +1668,9 @@ class MCAPI {
      * @returnf string last_login date/time of last login via the web
      * @returnf string affiliate_link Monkey Rewards link for our Affiliate program
      * @returnf array contact Contact details for the account
-            string fname First Name
-            string lname Last Name
-            string email Email Address
-            string company Company Name
-            string address1 Address Line 1
-            string address2 Address Line 2
-            string city City
-            string state State or Province
-            string zip Zip or Postal Code
-            string country Country name
-            string url Website URL
-            string phone Phone number
-            string fax Fax number
      * @returnf array modules Addons installed in the account
-            string name The module name
-            string added The date the module was added
      * @returnf array orders Order details for the account
-            int order_id The order id
-            string type The order type - either "monthly" or "credits"
-            double amount The order amount
-            string date The order date
-            double credits_used The total credits used
      * @returnf array rewards Rewards details for the account including credits & inspections earned, number of referals, referal details, and rewards used
-            int referrals_this_month the total number of referrals this month
-            string notify_on whether or not we notify the user when rewards are earned
-            string notify_email the email address address used for rewards notifications
-            array credits Email credits earned "this_month", "total_earned", and "remaining"
-            array inspections Inbox Inspections earned "this_month", "total_earned", and "remaining"
-            array referrals All referrals, including "name", "email", "signup_date", and "type"
-            array applied Applied rewards, including "value", "date", "order_id", and "order_desc"
      */
     function getAccountDetails() {
         $params = array();
@@ -2183,15 +1794,6 @@ class MCAPI {
      * @return array the total matching orders and the specific orders for the requested page
      * @returnf int total the total matching orders
      * @returnf array data the actual data for each order being returned
-            string store_id the store id generated by the plugin used to uniquely identify a store
-            string store_name the store name collected by the plugin - often the domain name
-            string order_id the internal order id the store tracked this order by
-            string email  the email address that received this campaign and is associated with this order
-            double order_total the order total
-            double tax_total the total tax for the order (if collected)
-            double ship_total the shipping total for the order (if collected)
-            string order_date the date the order was tracked - from the store if possible, otherwise the GMT time we recieved it
-            array lines containing detail of the order - product, category, quantity, item cost
      */
     function ecommOrders($start=0, $limit=100, $since=NULL) {
         $params = array();
@@ -2207,27 +1809,6 @@ class MCAPI {
      * @section Ecommerce
      *
      * @param array $order an array of information pertaining to the order that has completed. Use the following keys:
-                string id the Order Id
-                string email_id optional (kind of) the Email Id of the subscriber we should attach this order to (see the "mc_eid" query string variable a campaign passes) - either this or <strong>email</strong> is required. If both are provided, email_id takes precedence
-                string email optional (kind of) the Email Address we should attach this order to - either this or <strong>email_id</strong> is required. If both are provided, email_id takes precedence 
-                double total The Order Total (ie, the full amount the customer ends up paying)
-                string order_date optional the date of the order - if this is not provided, we will default the date to now
-                double shipping optional the total paid for Shipping Fees
-                double tax optional the total tax paid
-                string store_id a unique id for the store sending the order in (20 bytes max)
-                string store_name optional a "nice" name for the store - typically the base web address (ie, "store.mailchimp.com"). We will automatically update this if it changes (based on store_id)
-                string plugin_id the MailChimp assigned Plugin Id. Get yours by <a href="/api/register.php">registering here</a>
-                string campaign_id optional the Campaign Id to track this order with (see the "mc_cid" query string variable a campaign passes)
-                array items the individual line items for an order using these keys:
-                <div style="padding-left:30px"><table><tr><td colspan=*>
-                    int line_num optional the line number of the item on the order. We will generate these if they are not passed
-                    int product_id the store's internal Id for the product. Lines that do no contain this will be skipped 
-                    string product_name the product name for the product_id associated with this item. We will auto update these as they change (based on product_id)
-                    int category_id the store's internal Id for the (main) category associated with this product. Our testing has found this to be a "best guess" scenario
-                    string category_name the category name for the category_id this product is in. Our testing has found this to be a "best guess" scenario. Our plugins walk the category heirarchy up and send "Root - SubCat1 - SubCat4", etc.
-                    double qty the quantity of the item ordered
-                    double cost the cost of a single item (ie, not the extended cost of the line)
-                </td></tr></table></div>
      * @return bool true if the data is saved, otherwise an error is thrown.
      */
     function ecommOrderAdd($order) {

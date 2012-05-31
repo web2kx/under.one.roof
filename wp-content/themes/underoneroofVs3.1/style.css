@@ -11,7 +11,7 @@ Author: Elvis Milan & Vanesa Urquiza
 
 /* Reset margins */
 body,div,h1,h2,h3,h4,h5,h6,p,blockquote,figure,pre,code,ol,ul,li,dl,dt,dd,table,th,td,form,fieldset,legend,input,textarea {
-	/*font-family: "ProximaNova-Regular", arial, sans serif;*/
+	font-family: "ProximaNova-Regular", arial, sans serif;
 	margin:0;
 	padding:0;
 }
@@ -214,6 +214,8 @@ list-style-type:none;
     list-style-type: none;
     padding: 10px 20px 10px 3px;
     text-decoration: none;
+	font-size:13px;
+	font-family:"Helvetica", arial, sans serif;
 }
 #menu a:hover {
 color:#000;
@@ -291,10 +293,9 @@ float:left;
 width: 985px;
 height: 211px;
 margin: 0px;
-border: 1px solid #7b7b7b;
-border-right:none;
-background-image: url(images/destacado_bg.png);
-background-repeat: repeat-x;
+/*border: 1px solid #7b7b7b;*/
+/*background-image: url(images/destacado_bg.png);
+background-repeat: repeat-x;*/
 background-color: #25AAE1;
 }
 
@@ -303,7 +304,7 @@ background-color: #25AAE1;
     padding-top: 33px;	
 	color: #FFFFFF;
     font-family: "ProximaNova-Regular", arial, sans serif;
-    font-size: 26px;
+    font-size: 30px;
     font-weight: bold;
     letter-spacing: 2px;
 }
@@ -509,7 +510,7 @@ color: #fff;
 }
  
 #contact{
-float: left;
+float: left;margin-left:20px;
 }
 
 #contact img{
@@ -542,7 +543,7 @@ padding-left: 0px;
 
 #information p {
     color: #333344;
-	font-family:"Helvetica", arial, sans serif; 
+	font-family: "ProximaNova-Regular", arial, sans serif;
     font-size: 15px;
     letter-spacing: 1px;
     margin: 3px;
@@ -716,10 +717,43 @@ ul.social li{
 	}
 	
 /* edited by Jason Fang */
+.homepage-middle-banner{ width:985px;height:590px;background:#eee; }
+.homepage-slider-2{ float: left;height: 449px;margin-left: 0;margin-top: 0;position: relative;width: 713px;background:#eee; }
+
+/* contact page */
+.contactbanner{ width:985px;height:480px;background:url('images/contact-main.jpg') no-repeat; }
+.spacesbanner{ width:985px;height:480px;background:url('images/spaces-main.jpg') no-repeat; }
+
+/* space page */
+.spacestext1{ width:985px;height:200px;background:#fff url('images/diagonal-line.png') no-repeat 67% 45%;margin-left:20px;padding:25px 0px;position:relative; }
+.sapcestext1a{ width:540px;height:70px;line-height:35px;font-size:28px;font-family: "ProximaNova-Regular", arial, sans serif;position:absolute;top:50px;left:25px;font-weight:lighter; }
+.sapcestext1b{ font-size:13px;font-family:"Helvetica", arial, sans serif;color:#111;width:500px;height:54px;line-height:18px;position:absolute;top:140px;left:25px; }
+.spacestext1c{ font-size:17px;font-family: "ProximaNova-Regular", arial, sans serif;width:250px;height:80px;font-weight:lighter;position:absolute;top:90px;left:700px; }
+.spacestext2_bg{ width:985px;height:850px;background:#fff;margin-left:20px; }
+.spacestext2{ float:left;width:328px;height:425px; }
+.spacestext2img{ width:328px;height:320px;background:#aaa;margin-top:10px;position:relative; }
+.spacestext2imgcover{ position:absolute;top:0px;left:0px;width:328px;height:320px;z-index:10; }
+.imgcovera{ background:url('images/spaces-circle-grey.png') no-repeat;z-index:20; }
+.imgcoverb{ background:url('images/spaces-circle-white.png') no-repeat;z-index:20; }
+
+
+/* email subscription css */
 .email_sub_button{ margin-top:0px; width:42px; height:37px; background:#E55D1F; color:#fff; border:0; cursor:pointer;font-family: "ProximaNova-Regular", arial, sans serif; }
 .email_sub_field{ margin-top:0px; width:200px; height:37px; color:#000; border-style:solid none solid solid; border-width:1px 0 1px 1px; border-color:#B7B7B7; padding-left:5px; }
-	
+
+/* general css */
+.uortextbg{ width:328px;height:75px; }
+.uortexttitle{ font-size:17px;font-family: "ProximaNova-Regular", arial, sans serif;width:268px;padding:0px 30px;height:20px;font-weight:lighter; }
+.uortext{ font-size:13px;font-family:"Helvetica", arial, sans serif;color:#111;width:268px;padding:0px 30px;height:54px;line-height:18px; }
+.uortext2{ font-size:13px;font-family:"Helvetica", arial, sans serif;color:#f5f5f5;width:268px;padding:0px 30px;height:auto;line-height:18px; }
+.uortext a{ font-size:13px;font-family:"Helvetica", arial, sans serif;color:#111;}
 .font11{ font-size:11px;font-family:"Helvetica", arial, sans serif; }
 .font12{ font-size:12px;font-family:"Helvetica", arial, sans serif; }
 .redtext{ color:#f03; }
-    
+.bgwhite{ background:#fff; }
+.bggrey{ background:#f5f5f5; }
+.bgorange{ background:#e55e20; }
+.textorange{ color:#e55e20; }
+.textwhite{ color:#fff; }
+.textf5{ color:#f5f5f5; }
+.clr{ clear:both; }

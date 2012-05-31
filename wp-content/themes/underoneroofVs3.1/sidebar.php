@@ -1,6 +1,7 @@
 <div id="sidebar">
 <h3>NEWS</h3>
-<ul>
+<p><font color="#ffffff">Welcome to our new site</font></p>
+<!-- <ul>
 <?php query_posts('category_name=news&posts_per_page=3' ); 
 while ( have_posts() ) : the_post(); ?>
 	<li>
@@ -12,7 +13,7 @@ while ( have_posts() ) : the_post(); ?>
 	</li>
 <?php endwhile; wp_reset_query(); ?>	
 </ul>
-<p><a href="#">View All News</a></p>
+<p><a href="#">View All News</a></p> -->
 <?php 
 if (is_home()) {
 	if ( !function_exists('dynamic_sidebar') || !dynamic_sidebar('Sidebar Home') ) : endif;
