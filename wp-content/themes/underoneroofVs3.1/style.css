@@ -5,10 +5,13 @@ Description: This is a demo theme for the users of <a href="http://www.underoner
 Version: 3.1
 Author: Elvis Milan & Vanesa Urquiza
 */
- 
+
+@font-face {font-family: 'ProximaNova-Regular';src: url('proxima_nova_font/231014_0_0.eot');src: url('proxima_nova_font/231014_0_0.eot?#iefix') format('embedded-opentype'),url('proxima_nova_font/231014_0_0.woff') format('woff'),url('proxima_nova_font/231014_0_0.ttf') format('truetype');}
+@font-face {font-family: 'ProximaNova-Bold';src: url('proxima_nova_font/231014_1_0.eot');src: url('proxima_nova_font/231014_1_0.eot?#iefix') format('embedded-opentype'),url('proxima_nova_font/231014_1_0.woff') format('woff'),url('proxima_nova_font/231014_1_0.ttf') format('truetype');}
 
 /* Reset margins */
 body,div,h1,h2,h3,h4,h5,h6,p,blockquote,figure,pre,code,ol,ul,li,dl,dt,dd,table,th,td,form,fieldset,legend,input,textarea {
+	/*font-family: "ProximaNova-Regular", arial, sans serif;*/
 	margin:0;
 	padding:0;
 }
@@ -49,7 +52,6 @@ ins {
 }
 a {
 	color:#00f;
-	
 }
 :focus {
 	outline:0;
@@ -64,7 +66,7 @@ input,button,textarea,select {
 	font-weight:inherit;
 }
 pre,code {
-	font-family:"Lucida Console",Monaco,monospace;
+	font-family:"Helvetica", arial, sans serif;
 	font-size:12px;
 }
 h1,h2,h3,h4,h5,h6 {
@@ -72,21 +74,26 @@ h1,h2,h3,h4,h5,h6 {
 	font-weight:normal;
 }
 h1 a {
+	font-family: "ProximaNova-Regular", arial, sans serif;
 	font-size:48px;
 	text-decoration:none;
 	color:#333333;
 }
 h1 span {
+	font-family:"Helvetica", arial, sans serif;
 	font-size:12px;
 	color:#f4932c;
 }
 h2 {
+	font-family: "ProximaNova-Regular", arial, sans serif;
 	font-size:20px;
 }
 h3 {
+	font-family: "ProximaNova-Regular", arial, sans serif;
 	font-size:18px;
 }
 table {
+	font-family:"Helvetica", arial, sans serif;
 	font-size:inherit;
 }
 caption,th {
@@ -118,7 +125,7 @@ caption,th {
 
 /*Page*/
 body {
-	font-family: arial, sans serif;
+	font-family:"Helvetica", arial, sans serif;
 	font-size:12px;
 	background:#e6e6e6 url("images/background.png") 0 63px repeat;
 }
@@ -295,7 +302,7 @@ background-color: #25AAE1;
     padding-left: 25px;
     padding-top: 33px;	
 	color: #FFFFFF;
-    font-family: arial,sans serif;
+    font-family: "ProximaNova-Regular", arial, sans serif;
     font-size: 26px;
     font-weight: bold;
     letter-spacing: 2px;
@@ -341,6 +348,7 @@ background-color: #25AAE1;
     background-color: #25AAE1 !important;
     color: #343534 !important;
     float: left !important;
+	font-family: "ProximaNova-Regular", arial, sans serif;
     font-size: 15px !important;
     font-weight: bold !important;
     margin-top: -11px;
@@ -350,6 +358,7 @@ background-color: #25AAE1;
 .event-description{	
     color: #343534;
     float: left;
+	font-family: "ProximaNova-Regular", arial, sans serif;
     font-size: 15px;
     width: 203px;
 }
@@ -361,6 +370,7 @@ background-color: #25AAE1;
 
 .event-more a{
     float: left;
+	font-family: "ProximaNova-Regular", arial, sans serif;
     font-size: 15px;    
 	color: #343534;
 	width: 235px;
@@ -376,7 +386,7 @@ float:left;
 }
  
 .item h3 {
-font-family: arial, sans serif;
+font-family: "ProximaNova-Regular", arial, sans serif;
 font-weight:bold;
 font-size: 16px;
 line-height:30px;
@@ -385,7 +395,7 @@ text-align:center;
 }
  
 .item p {
-font-family: arial, sans serif;
+font-family:"Helvetica", arial, sans serif;
 font-weight:bold;
 font-size: 12px;
 line-height:20px;
@@ -405,14 +415,14 @@ float:left;
 }
  
 .news  h2 {
-font-family: arial, sans serif;
+font-family: "ProximaNova-Regular", arial, sans serif;
 font-size: 22px;
 margin-top:10px;
 color: #7b7b7b;
 }
  
 .news p {
-font-family: arial, sans serif;
+font-family:"Helvetica", arial, sans serif;
 font-size: 12px;
 line-height:18px;
 color: #7b7b7b;
@@ -430,7 +440,7 @@ color: #7b7b7b;
  
 #sidebar h3 {
     color: #FFFFFF;
-    font-family: arial,sans serif;
+    font-family: "ProximaNova-Regular", arial, sans serif;
     font-size: 26px;
     font-weight: bold;
     letter-spacing: 2px;
@@ -466,6 +476,7 @@ list-style-type:none;
 
 .news-title{
     float: left;
+	font-family:"Helvetica", arial, sans serif;
     font-size: 13px;
     font-weight: bold;
     padding-bottom: 5px;
@@ -515,6 +526,7 @@ padding-left: 0px;
 
 #information h1{
     color: #333333;
+	font-family: "ProximaNova-Regular", arial, sans serif;
     font-size: 28px;
     text-decoration: none;
 	padding: 0px;
@@ -523,12 +535,14 @@ padding-left: 0px;
 
 #information h1 a {
     color: #333333;
+	font-family: "ProximaNova-Regular", arial, sans serif;
     font-size: 26px;
     text-decoration: none;
 }
 
 #information p {
     color: #333344;
+	font-family:"Helvetica", arial, sans serif; 
     font-size: 15px;
     letter-spacing: 1px;
     margin: 3px;
@@ -537,6 +551,7 @@ padding-left: 0px;
 
 #information span{
     color: #333344;
+	font-family:"Helvetica", arial, sans serif; 
     font-size: 8px;
     letter-spacing: 1px;
     text-decoration: none;
@@ -549,29 +564,31 @@ padding-left: 0px;
 }
 
 #newsletter h1{
-color: #333333;
+	color: #333333;
+	font-family: "ProximaNova-Regular", arial, sans serif;
     font-size: 26px;
     text-decoration: none;
 	margin: 0;
 }
 
 #newsletter p{
-color: #333333;
+	color: #333333;
+	font-family: "ProximaNova-Regular", arial, sans serif;
     font-size: 15px;
     text-decoration: none;
 }
 
 #newsletter input{
-float:left;
+	float:left;
 }
  
 ul.social {
-list-style-type:none;
-float:right;
-width:150px;
+	list-style-type:none;
+	float:right;
+	width:150px;
 }
 ul.social li{
-float:left;
+	float:left;
 }
 
 /* CONTACT*/
@@ -609,7 +626,7 @@ float:left;
 		height:50px; vertical-align:middle; width:313px;
 	}
 	.contact_twitter{
-		color: #00cc33; font-size:22px; float:left; padding-top:12px;
+		color: #00cc33; font-size:22px; float:left; padding-top:12px;font-family: "ProximaNova-Regular", arial, sans serif;
 	}
 	
 	.theme-default .nivo-controlNav {
@@ -632,6 +649,7 @@ float:left;
 	.slider-title{
 	float: left;
 	color: #333333;
+	font-family: "ProximaNova-Regular", arial, sans serif;
     font-size: 46px;
     text-decoration: none;
 	margin: 0;
@@ -651,6 +669,7 @@ float:left;
 	.slider-homepage-title h2{
     color: white;
     float: left;
+	font-family: "ProximaNova-Regular", arial, sans serif;
     font-size: 19px;
     letter-spacing: 0.9px;
     padding-left: 26px;
@@ -658,6 +677,7 @@ float:left;
 	}
 	.button-a a{
     color: #FFFFFF;
+	font-family:"Helvetica", arial, sans serif;
     font-size: 12px;
     font-weight: bold;
     letter-spacing: 0.8px;
@@ -694,3 +714,12 @@ float:left;
 	padding-top: 6px;
 	padding-left: 6px;
 	}
+	
+/* edited by Jason Fang */
+.email_sub_button{ margin-top:0px; width:42px; height:37px; background:#E55D1F; color:#fff; border:0; cursor:pointer;font-family: "ProximaNova-Regular", arial, sans serif; }
+.email_sub_field{ margin-top:0px; width:200px; height:37px; color:#000; border-style:solid none solid solid; border-width:1px 0 1px 1px; border-color:#B7B7B7; padding-left:5px; }
+	
+.font11{ font-size:11px;font-family:"Helvetica", arial, sans serif; }
+.font12{ font-size:12px;font-family:"Helvetica", arial, sans serif; }
+.redtext{ color:#f03; }
+    

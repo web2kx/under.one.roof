@@ -13,7 +13,8 @@
 				 ?>
 			</title>
 		
-			<link rel="stylesheet" type="text/css" href="<?php bloginfo('stylesheet_url'); ?>" media="screen" />	
+			<link rel="stylesheet" type="text/css" href="<?php bloginfo('stylesheet_url'); ?>" media="screen" />
+			<script type="text/javascript" src="<?php bloginfo('stylesheet_directory'); ?>/scripts/jquery-1.7.2.min.js"></script>
 			<link rel="alternate" type="application/rss+xml" title="<?php printf(__('%s RSS Feed', 'kubrick'), get_bloginfo('name')); ?>" href="<?php bloginfo('rss2_url'); ?>" />
 			<link rel="alternate" type="application/atom+xml" title="<?php printf(__('%s Atom Feed', 'kubrick'), get_bloginfo('name')); ?>" href="<?php bloginfo('atom_url'); ?>" /> 
 			<link rel="pingback" href="<?php bloginfo('pingback_url'); ?>" />
@@ -33,7 +34,7 @@
 								</a>
 							</div>
 							<!-- NAV SUP -->
-							<div id="top-menu">
+							<!--<div id="top-menu">
 								
 								<?php wp_nav_menu(
 									array(
@@ -52,7 +53,7 @@
 									'theme_location'=> 'menu-top1',
 								)); ?>								
 								
-							</div>
+							</div>-->
 							<!-- TITLE PAGE -->
 							<div class="titlepage">
 								<h1>
