@@ -85,4 +85,29 @@
 	 
 		return false;
 	} // end is_sidebar_active
+	
+//function to add breadcrumbs
+function the_breadcrumb() {
+	echo '<a href="';
+	echo get_option('home');
+	echo '">';
+	echo "HOME";
+	echo "</a>";
+	if(is_home()){
+		echo " &#47; <span style='font-size:12px;letter-spacing:0px;'>Welcome to Under One Roof Properties, a new generation of workspace.</span>";
+	}
+	if(!is_home()) {
+		echo " &#47; ";
+		if (is_category() || is_single()) {
+			the_category('title_li=');
+			if (is_single()) {
+				echo " &#47; ";
+				strtoupper(the_title());
+			}
+		} elseif (is_page()) {
+			echo strtoupper(the_title());
+		}
+	}
+}
+
 ?>

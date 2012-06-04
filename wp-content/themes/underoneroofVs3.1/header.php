@@ -21,7 +21,7 @@
 			
 			<?php wp_head(); ?>
 		</head>
-		<body>
+		<body class="<?php wp_title(); ?>" >
 			<div class="Main">
 				<div class="page_template">
 					<!-- HEADER -->
@@ -70,13 +70,25 @@
 									'container'		=> false,
 									'items_wrap' 	=> '<ul id="menu">%3$s</ul>',
 									'theme_location'=> 'menu',
+									'link_after' => '<div class="delimiter">&#47;</div>'
 								)); ?>
+								<script type="text/javascript">
+									//$(".menu-item").mouseenter(function(){
+									//	var linktext = $(this).text();
+										//alert(linktext);
+									//	if(linktext == "SPACES/"){
+											//alert(linktext);
+									//		$(this).css("color", "#f03");
+									//	}
+								///	});
+								</script>
 							</div>
 						</div>
 					</div>
 					<!-- CONTEND -->
 					<div id="content">
 						<div class="contend">
+							<?php include("breadcrums-block.php"); ?>
 							<div class="g12">
 								<!-- BAR NAVIGATION -->
 								<div id="bar_navigation">

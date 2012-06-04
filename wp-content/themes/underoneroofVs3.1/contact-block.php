@@ -1,14 +1,17 @@
 <div id="contact">
-	<img src="<?php bloginfo('template_url'); ?>/images/icon.png" />	
+	<img width="162" height="80" src="<?php bloginfo('template_url'); ?>/images/icon.png" />	
 	<div id="information">
+		<!--<h1>Under One Roof Properties</h1>-->
 		<h1><a href="#">Under One Roof Properties</a></h1>
-		<p>Tel: 613 533 3448 / Email: info@underoneroof.cak</p>
-		<p>251 Bank Street, 2nd floor, Ottwa ON K2P 1X3</p>				
-		<span>Under One Roof Properties is a registered non-for-profit organization.</span>
+		<!--<p><a href="#">Under One Roof Properties</a></p>-->
+		<p>Tel: 613 533 3448 / Email: <a href="mailto:info@underoneroof.ca">info@underoneroof.ca</a></p>
+		<p>251 Bank Street, 2nd floor, Ottawa ON K2P 1X3</p>				
+		<!--&nbsp;<span style="margin-left:1px;">Under One Roof Properties is a registered non-for-profit organization.</span>-->
+		<p style="font-size:11px;">Under One Roof Properties is a registered non-for-profit organization.</p>
 	</div>
 	<div id="newsletter">
-		<h1>Stay Connected!</h1>
-		<p>Subscribe to our Newsletter.</p>
+		<h1 style="margin-bottom:3px;">Stay Connected!</h1>
+		<p style="margin-bottom:7px;">Subscribe to our Newsletter.</p>
 		<!-- <div class="wysija-msg ajax" id="msg-form-wysija-nl-1337446152"></div>
 		<form class="widget_wysija form-valid-sub" action="" method="post" id="form-wysija-nl-1337446152"><p><input type="text" name="wysija[user][email]" class="wysija-email validate[required,custom[email]]" id="form-wysija-nl-1337446152-wysija-to"><span class="wysija-p-firstname abs-req"><label for="form-wysija-nl-1337446152-abs-firstname">First name</label><input type="text" name="wysija[user][abs][firstname]" class="validated[abs][req]" id="form-wysija-nl-1337446152-abs-firstname"></span><span class="wysija-p-lastname abs-req"><label for="form-wysija-nl-1337446152-abs-lastname">Last name</label><input type="text" name="wysija[user][abs][lastname]" class="validated[abs][req]" id="form-wysija-nl-1337446152-abs-lastname"></span><span class="wysija-p-email abs-req"><label for="form-wysija-nl-1337446152-abs-email">Email</label><input type="text" name="wysija[user][abs][email]" class="validated[abs][email]" id="form-wysija-nl-1337446152-abs-email"></span><input type="submit" value="Join" name="submit" class="wysija-submit wysija-submit-field"></p><input type="hidden" value="form-wysija-nl-1337446152" name="formid">
 			<input type="hidden" value="save" name="action">

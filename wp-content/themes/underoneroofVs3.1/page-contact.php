@@ -5,14 +5,18 @@
 ?>
 
 		<?php get_header(); ?>
-		
+		<style>
+			#menu li.contact a { color: #009d4c; }
+		</style>
 		<!-- change body image background-->
 		<script type="text/javascript">
 		$(document).ready(function(){
-			$("body").css("background", "url('<?php bloginfo('stylesheet_directory'); ?>/images/contact-bg.jpg') repeat");
+			/*$("body").css("background", "url('<?php bloginfo('stylesheet_directory'); ?>/images/contact-bg.jpg') repeat");*/
+			$("body").css("background", "#009d4c url('<?php bloginfo('stylesheet_directory'); ?>/images/bg_contact.png') 0 63px repeat");
 		});
 		</script>
-				<div class="contactbanner"></div>
+				<div class="contactbanner"><!--<div class="contactbannertri"></div>-->
+				</div>
 				<div class="labelbanner"> <img src="<?php bloginfo('template_url'); ?>/images/contact-circle.png" alt="contact"> </div>
 				
 			</div>
@@ -28,7 +32,7 @@
 					<div class="page" style="padding-bottom:0px;" id="page-<?php the_ID();?>">
 						
 						<?php the_content(); ?>
-						<input type="text" class="email_sub_field" name="emailtosubscribe" id="emailtosubscribe" /><input type="button" class="email_sub_button" name="emailsubscribesubmit" id="emailsubscribesubmit" value="Join" /><br /><div id="email_sub_response" class="fontf12 redtext"></div>
+						<div style="margin-top:5px;width:242px;height:37px;"><div style="float:left;width:200px;height:37px;"><input type="text" class="email_sub_field" name="emailtosubscribe" id="emailtosubscribe" /></div><div style="float:left;width:40px;height:37px;"><input type="button" class="email_sub_button" name="emailsubscribesubmit" id="emailsubscribesubmit" value="Join" /></div></div><br /><div id="email_sub_response" class="fontf12 redtext"></div>
 						<script type="text/javascript">
 							$(document).ready(function(){
 								//hide email subscription response box

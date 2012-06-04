@@ -2,6 +2,11 @@
 
 			<div class="homepage-middle-banner">
 				<img border="0" src="<?php bloginfo('stylesheet_directory'); ?>/images/UnderOneRoof_banner_homepage.jpg" width="985" height="590" />
+				<div class="homepage-middle-banner-text textwhite">
+					Under One Roof fosters an environment of interaction<br /> 
+					&amp; collaboration for social change. Connect with a <br />
+					like-minded network of creative thinkers &amp; innovators.
+				</div>
 			<!-- <?php query_posts('category_name=slider&posts_per_page=1' ); 
 					while ( have_posts() ) : the_post(); ?>							
 							<?php the_post_thumbnail( 'homepage-slider' );?>
@@ -29,9 +34,12 @@
 						
 				</ul>-->
 				<img border="0" src="<?php bloginfo('stylesheet_directory'); ?>/images/our-members.jpg" width="713" height="449" />
+				<div class="homepage-slider-2-title font25 fontproxima textwhite">OUR MEMBERS</div>
+				
+				<div class="homepage-slider-2-text1 font17 fontproxima textwhite">We are so pleased and excited<br />to be part of this vibrant<br />community"</div>
+				<div class="homepage-slider-2-text2 font13 fontproxima textwhite">Action Canada for Population<br />and development.</div>
 			</div>
 						
-			
 				<?php get_sidebar(); ?>
 
 				<!--<div id="featured">
@@ -55,4 +63,4 @@
 			
 		</div><!-- end content -->	
 			
-<?php  get_footer(); ?>
+<?php  get_footer(); ?>homepage-middle-banner-text

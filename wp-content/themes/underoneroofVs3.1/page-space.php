@@ -5,8 +5,12 @@
 ?>
 
 		<?php get_header(); ?>
-
-			<div class="spacesbanner"></div>
+		<style>
+			#menu li.spaces a { color: #e55e20; }
+		</style>
+		
+			<div class="spacesbanner"><!--<div class="spacesbannertri"></div>-->
+			</div>
 			<div class="labelbanner"> <img src="<?php bloginfo('template_url'); ?>/images/spaces-circle.png" alt="contact"> </div>
 			
 		</div>
@@ -14,7 +18,7 @@
 		<div class="spacestext1">
 			<div class="sapcestext1a textorange">Promoting community &amp; sharing resources,<br /> a new generation of workspace has arrived.</div>
 			<div class="sapcestext1b">We offer workspaces to suit all needs, from private offices &amp; desks for a day,<br /> to meeting room rentals &amp; event hosting, along with all the amenites needed<br /> to run your organization.</div>
-			<div class="spacestext1c textorange">Book a meeting and tour. <br />Call 613.123.4567 or email us.<br /><br />Here’s How to Join.</div>
+			<div class="spacestext1c textorange">Book a meeting and tour. <br />Call 613.123.4567 or <a class="textorange" href="mailto:info@underoneroof.ca">email us</a>.<br /><br /><!--Here’s How to Join.--></div>
 		</div>
 		
 		<div class="spacestext2_bg">
@@ -27,7 +31,7 @@
 					<div class="uortext">
 						$1000-$3000 for private office space, <br />
 						plus 10 hrs of Meeting Room rental /month <br />
-						<a href="#">View Options &gt;</a>
+						<!--<a href="#">View Options &gt;</a>-->
 					</div>
 				</div>
 			</div>
@@ -40,7 +44,7 @@
 					<div class="uortext">
 						$500 for unlimited private desk space, <br />
 						plus 10 hrs of Meeting Room rental /month <br />
-						<a href="#">View Options &gt;</a>
+						<!--<a href="#">View Options &gt;</a>-->
 					</div>
 				</div>
 			</div>
@@ -53,7 +57,7 @@
 					<div class="uortext">
 						$150-$325 for desk space /month. <br />
 						$85 /day. Meeting Room rentals included. <br />
-						<a href="#">View Options &gt;</a>
+						<!--<a href="#">View Options &gt;</a>-->
 					</div>
 				</div>
 			</div>
@@ -66,7 +70,7 @@
 					<div class="uortext">
 						Hourly rentals for every size. Starting from<br />
 						$12* (6 people) to $30* (16 people).<br />
-						<a href="#">View Options &gt;</a>
+						<!--<a href="#">View Options &gt;</a>-->
 					</div>
 				</div>
 			</div>
@@ -79,7 +83,7 @@
 					<div class="uortext">
 						From $300* (half-day) to $700* (full-day). <br />
 						Capacity for up to 125 people.<br />
-						<a href="#">View Options &gt;</a>
+						<!--<a href="#">View Options &gt;</a>-->
 					</div>
 				</div>
 			</div>
